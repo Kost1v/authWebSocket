@@ -1,86 +1,33 @@
-// import { ErrorMessage, Field, Form, Formik } from "formik";
-// import { useDispatch } from "react-redux";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import Form from "../Form/Form";
+import { app } from "../../firebase/firebase";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../redux/auth/slice";
+import { useNavigate } from "react-router-dom";
 
-// import css from "../RegistrationForm/RegistrationForm.module.css";
+const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleRegister = (email, password) => {
+    const auth = getAuth(app);
+    console.log(auth);
 
-// import { RegisterSchema } from "../../utils/schema";
-// import { register } from "../../redux/auth/operations";
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        console.log(user);
+        dispatch(
+          setUser({
+            email: user.email,
+            id: user.uid,
+            token: user.refreshToken,
+          })
+        );
+        navigate("/");
+      })
+      .catch((error) => console.log(error));
+  };
 
-// const initialValues = {
-//   name: "",
-//   email: "",
-//   password: "",
-// };
+  return <Form title="Sing up" handleClick={handleRegister} />;
+};
 
-// const RegistrationForm = () => {
-//   const dispatch = useDispatch();
-
-//   const handleSubmit = (values, actions) => {
-//     dispatch(register(values))
-//       .unwrap()
-//       .catch((error) => {
-//         if (error === "Request failed with status code 400") {
-//           alert("This user is already registered");
-//         }
-//       });
-//     actions.resetForm();
-//   };
-
-//   return (
-//     <Formik
-//       initialValues={initialValues}
-//       onSubmit={handleSubmit}
-//       validationSchema={RegisterSchema}
-//     >
-//       <Form className={css.form}>
-//         <label className={css.label}>
-//           <span>Name:</span>
-//           <Field
-//             type="text"
-//             name="name"
-//             className={css.inputForm}
-//             placeholder="Enter your name..."
-//           />
-//           <ErrorMessage
-//             className={css.errorMessage}
-//             name="name"
-//             component="span"
-//           />
-//         </label>
-//         <label className={css.label}>
-//           <span>Email:</span>
-//           <Field
-//             type="text"
-//             name="email"
-//             className={css.inputForm}
-//             placeholder="Enter email..."
-//           />
-//           <ErrorMessage
-//             className={css.errorMessage}
-//             name="email"
-//             component="span"
-//           />
-//         </label>
-//         <label className={css.label}>
-//           <span>Password:</span>
-//           <Field
-//             type="password"
-//             name="password"
-//             className={css.inputForm}
-//             placeholder="Enter password..."
-//           />
-//           <ErrorMessage
-//             className={css.errorMessage}
-//             name="password"
-//             component="span"
-//           />
-//         </label>
-//         <button type="submit" className={css.btnForm}>
-//           Sing Up
-//         </button>
-//       </Form>
-//     </Formik>
-//   );
-// };
-
-// export default RegistrationForm;
+export default RegistrationForm;

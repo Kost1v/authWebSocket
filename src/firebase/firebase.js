@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { EmailAuthProvider, GoogleAuthProvider } from "firebase/auth";
+// import { EmailAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const AUTH_DOMAIN = import.meta.env.VITE_AUTH_DOMAIN;
@@ -18,5 +18,5 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
-export const googleAuthProvider = new GoogleAuthProvider();
-export const emailAuthProvider = new EmailAuthProvider();
+// export const googleAuthProvider = new GoogleAuthProvider();
+// export const emailAuthProvider = new EmailAuthProvider()

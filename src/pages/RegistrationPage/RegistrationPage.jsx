@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 
 const RegistrationPage = () => {
   return (
@@ -7,6 +8,7 @@ const RegistrationPage = () => {
       <span>
         Already have an account? <Link to="/login">Sing In</Link>
       </span>
+      <RegistrationForm />
     </div>
   );
 }
