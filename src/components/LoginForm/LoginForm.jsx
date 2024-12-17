@@ -26,7 +26,6 @@ const LoginForm = () => {
         navigate("/");
       })
       .catch((error) => console.log(error));
-
   };
 
   return <Form title="Sing in" handleClick={handleLogin} />;
