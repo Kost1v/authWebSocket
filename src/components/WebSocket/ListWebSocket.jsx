@@ -24,7 +24,7 @@ function ListWebSocket() {
           newTransaction.out.reduce((sum, output) => sum + output.value, 0) /
           1e8;
 
-        setTransactions((prev) => [newTransaction, ...prev.slice(0, 4)]);
+        setTransactions((prev) => [newTransaction, ...prev.slice(0, 9)]);
 
         setTotalAmount((prev) => prev + transactionAmount);
       }
@@ -40,7 +40,9 @@ function ListWebSocket() {
   };
 
   const disconnectSocket = () => {
-    socket.current.close();
+    if (socket.current) {
+      socket.current.close();
+    }
     setIsConect(false);
     console.log("WebSocket disconnected");
   };
@@ -52,7 +54,9 @@ function ListWebSocket() {
 
   useEffect(() => {
     return () => {
-      socket.current.close();
+      if (socket.current) {
+        socket.current.close();
+      }
     };
   }, []);
 
@@ -96,10 +100,6 @@ function ListWebSocket() {
               <p>
                 <strong>Hash:</strong> {tx.hash}
               </p>
-              {/* <p>
-                <strong>Amount:</strong> {totalAmount.toFixed(8)}
-                BTC
-              </p> */}
             </li>
           ))}
       </ul>

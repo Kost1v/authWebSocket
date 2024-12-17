@@ -19,7 +19,6 @@ const SocketPage = () => {
   
   return (
     <div>
-      <h1>Socket Page</h1>
       <ListWebSocket />
     </div>
   );
