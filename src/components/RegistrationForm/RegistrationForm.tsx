@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleRegister = (email, password) => {
+  const handleRegister = (email: string, password:string) => {
     const auth = getAuth(app);
     console.log(auth);
 

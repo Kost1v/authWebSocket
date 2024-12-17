@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import SocketPage from "./pages/SocketPage/SocketPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+
 
 function App() {
   return (

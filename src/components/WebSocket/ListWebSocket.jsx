@@ -6,12 +6,13 @@ function ListWebSocket() {
   const [isConect, setIsConect] = useState(false);
   const socket = useRef(null);
 
+
   const connectSocket = () => {
     socket.current = new WebSocket("wss://ws.blockchain.info/inv");
 
     socket.current.onopen = () => {
       console.log("WebSocket connected");
-      socket.current.send(JSON.stringify({ op: "unconfirmed_sub" }));
+      socket.current?.send(JSON.stringify({ op: "unconfirmed_sub" }));
       setIsConect(true);
     };
 

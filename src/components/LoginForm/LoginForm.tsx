@@ -9,7 +9,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = (email, password) => {
+  const handleLogin = (email: string, password: string) => {
     const auth = getAuth();
     console.log(auth);
     
